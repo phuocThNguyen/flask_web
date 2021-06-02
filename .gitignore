@@ -1,1 +1,5 @@
-.vscode
+/.vscode
+/website/venv
+**/__pycache__
+/tests
+/instance

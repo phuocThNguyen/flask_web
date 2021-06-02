@@ -10,11 +10,14 @@ db=SQLAlchemy()
 # a web server will run this web application
 def create_app():
   
-    app=Flask(__name__)  # this is the name of the module/package that is calling this app
-    app.debug=True
-    app.secret_key='utroutoru'
+    app=Flask(__name__, instance_relative_config=True)  # this is the name of the module/package that is calling this app
+    app.config.from_object('config')
+    app.config.from_pyfile('config.py')
+    app.config["DEBUG"]
+    app.config["SECRET_KEY"]
+
     #set the app configuration data 
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///sitedata.sqlite'
+    app.config["SQLALCHEMY_DATABASE_URI"]
     #initialize db with flask app
     db.init_app(app)
 
